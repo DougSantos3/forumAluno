@@ -19,11 +19,15 @@ class JWTUtil(
     private var secret: String = "secret"
     private val key = Algorithm.HMAC256(secret.toByteArray())
 
-    fun generateToken(username: String, authorities: Collection<out GrantedAuthority>): String? {
+
+    fun generateToken(username: String, authorities: MutableCollection<out GrantedAuthority>): String? {
+        val authoritiesList = authorities.toString()
         return JWT.create()
             .withSubject(username)
+            .withClaim("role", authoritiesList)
             .withExpiresAt(Date(System.currentTimeMillis() + expiration))
             .sign(key)
+
     }
 
     fun isValid(jwt: String?): Boolean {
@@ -35,7 +39,7 @@ class JWTUtil(
         }
     }
 
-    fun getAuthentication(jwt: String?) : Authentication {
+   fun getAuthentication(jwt: String?) : Authentication {
         val username = JWT.require(key)
             .build()
             .verify(jwt)

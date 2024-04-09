@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 class JWTLoginFilter(
-        private val authManager: AuthenticationManager,
-        private val jwtUtil: JWTUtil)
+    private val authManager: AuthenticationManager,
+    private val jwtUtil: JWTUtil)
     : UsernamePasswordAuthenticationFilter() {
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
@@ -29,7 +29,7 @@ class JWTLoginFilter(
         chain: FilterChain?,
         authResult: Authentication?
     ) {
-       val user = (authResult?.principal as UserDetails)
+        val user = (authResult?.principal as UserDetails)
         val token = jwtUtil.generateToken(user.username, user.authorities)
         response?.addHeader("Authorization","Bearer $token")
     }

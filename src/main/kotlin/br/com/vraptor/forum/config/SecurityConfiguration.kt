@@ -23,7 +23,6 @@ class SecurityConfiguration(
     val jwtUtil: JWTUtil
 ) {
 
-
     @Bean
     fun securityFilterChain(http: HttpSecurity, config: AuthenticationConfiguration): SecurityFilterChain {
         http.csrf {
@@ -46,7 +45,6 @@ class SecurityConfiguration(
             .addFilterBefore(JWTAuthenticationFilter(jwtUtil = jwtUtil), UsernamePasswordAuthenticationFilter::class.java)
         return http.build()
     }
-
 
     @Bean
     fun bCryptPasswordEncoder(): BCryptPasswordEncoder = BCryptPasswordEncoder()
