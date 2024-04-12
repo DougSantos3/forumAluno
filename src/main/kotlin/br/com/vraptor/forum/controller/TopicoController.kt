@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.util.UriComponentsBuilder
 
+
 @RestController
 @RequestMapping("/topicos")
 class TopicoController(private val service: TopicoService) {
+
 
     @GetMapping
     @Cacheable("topicos")
@@ -41,6 +43,7 @@ class TopicoController(private val service: TopicoService) {
     fun buscarPorId(@PathVariable id: Long): TopicoView {
         return service.buscarPorId(id)
     }
+
 
     @Transactional
     @PostMapping
@@ -58,7 +61,7 @@ class TopicoController(private val service: TopicoService) {
     @PutMapping
     @CacheEvict(value = ["topicos"], allEntries = true)
     fun atualizar(@RequestBody @Valid form: AtualizacaoTopicoForm) : ResponseEntity<TopicoView> {
-       val topicoView = service.atualizar(form)
+        val topicoView = service.atualizar(form)
         return ResponseEntity.ok(topicoView)
     }
 
@@ -69,6 +72,7 @@ class TopicoController(private val service: TopicoService) {
     fun deletar(@PathVariable id: Long) {
         service.deletar(id)
     }
+
 
     @GetMapping("/relatorio")
     fun relatorio(): List<TopicoPorCategoriaDto> {

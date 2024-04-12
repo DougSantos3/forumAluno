@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 
 
 @Service
@@ -52,6 +53,7 @@ class TopicoService(
             .orElseThrow{NotFoundException(notFoundMessage)}
         topico.titulo = form.titulo
         topico.mensagem = form.mensagem
+        topico.dataAlteracao = LocalDate.now()
         return topicoViewMapper.map(topico)
     }
 
