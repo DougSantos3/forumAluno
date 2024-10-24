@@ -17,9 +17,9 @@
 #### Por fim, dizemos qual imagem queremos usar, mysql:8.3.0.
 `docker run -d -p 3306:3306 --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_PASSWORD-root mysql:8.3.0`
 
-### [Opcional] As vezes o container pode já existir e estar parado, para consultar `docker ps -a`. 
+### [Opcional] Pode ser que o container já exista e esta parado, para consultar `docker ps -a`. 
 ### [Opcional] Para executar um container parado:  `docker start CONTAINER ID`
-### [Opcional] Ou se quizer parar e remover para executar outro `docker stop mysql-container` e `docker rm mysql-container`
+### [Opcional] Ou se quiser parar e remover para executar outro `docker stop mysql-container` e `docker rm mysql-container`
 
 ### Para ver apenas os container que estão em execução
 `docker ps`
@@ -32,20 +32,23 @@
 `mysql -u root -p`
 
 ### Agora podemos dar um create database forum para criar o banco de dados.
-`create database forum`
+`create database forum;`
 
 ### Feito isso, criamos o database. Pra conferirmos se está tudo certo, passamos o comando use forum.
 `use forum`
 
-### E podemos consultar
-`select * from topico`
 
+### Gere o .jar com o comando(ele ficara no path: /target/forum-0.0.1-SNAPSHOT.jar)
+`mvn clean package`
 
 ### Constroi a imagem/ faça o build dela
 `docker build -t forum -f Dockerfile .`
 
 ### Roda o container aplicação
 `docker run -p 3080:8780 forum`
+
+### E podemos consultar
+`select * from topico;`
 
 # MVN commands
 
