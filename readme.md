@@ -1,4 +1,4 @@
-### Local na minha maquina estou usando distribução:
+### Jdk:
 `OpenJDK Runtime Environment Zulu17.54+21-CA (build 17.0.13+11-LTS)`
 <br>
 `Jdk: 17.0.13 Lts`
@@ -47,7 +47,7 @@
 ### Gere o .jar com o comando(ele ficara no path: /target/forum-0.0.1-SNAPSHOT.jar)
 `mvn clean package`
 
-### Constroi a imagem/ faça o build dela
+### Constroi a imagem/ faça o build dela, gera o container
 `docker build -t forum -f Dockerfile .`
 
 ### Roda o container aplicação
