@@ -11,21 +11,12 @@
 
 <br>
 
-#### Rodar o container da aplicação do Mysql.
-#### Feito isso, a ferramenta indica que fez o pulling da biblioteca da imagem do MySQL.
-#### Porém, nós já temos a biblioteca na nossa máquina. No caso ao passar esse comando o download será feito, ao concluir estará pronto, para usarmos o próximo comando, que é criar o container a partir dessa imagem.
-#### O próximo passo então é passar o comando docker run seguido de -dde detected, -p para definir a porta que será 3306:3306.
-#### Importante ressaltar que o -p pe para a porta. Quando colocamos 3306, definimos que a porta do container será 3306 e isso será necessário para conseguir nos conectar ao container.
-#### Além disso, o banco de dados também será 3306 que é padrão do MySQL.
-#### Dessa forma, quando colocarmos na string de conexão 3306, nos referimos ao banco de dados, que está após os dois pontos : antes é o container.
-#### Na mesma linha passamos --name mysql-container.
-#### Em seguida, configuramos a variável de ambiente -e MYSQL_ROOT_PASSWORD=root seguido de -e mysql_password=root.
-#### Por fim, dizemos qual imagem queremos usar, mysql:8.3.0.
+#### Criar e iniciar um container
 `docker run -d -p 3306:3306 --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_PASSWORD-root mysql:8.3.0`
 
-### [Opcional] Pode ser que o container já exista e esta parado, para consultar `docker ps -a`. 
-### [Opcional] Para executar um container parado:  `docker start CONTAINER ID`
-### [Opcional] Ou se quiser parar e remover para executar outro `docker stop mysql-container` e `docker rm mysql-container`
+### [Opcional] Caso o container já exista e esteja parado, você pode consultá-lo com o seguinte comando: `docker ps -a`. 
+### [Opcional] Para iniciar um container que está parado, utilize o comando:`docker start CONTAINER ID`
+### [Opcional] Se preferir parar e remover um container para executar outro, use os comandos a seguir: `docker stop mysql-container` e `docker rm mysql-container`
 
 ### Para ver apenas os container que estão em execução
 `docker ps`
@@ -33,8 +24,7 @@
 ### Acessar o container
 `docker exec -it mysql-container bash`
 
-### Após, podemos chamar o mysql seguido de -u root -p e passar a senha. 
-### Definimos nossa senha como root, você pode ter definido outra, então neste momento você passa a senha definida.
+### Após, podemos chamar o mysql seguido de -u root -p e passar a senha que é root 
 `mysql -u root -p`
 
 ### Agora podemos dar um create database forum para criar o banco de dados.
@@ -50,6 +40,7 @@
 ### Constroi a imagem/ faça o build dela, gera o container
 `docker build -t forum -f Dockerfile .`
 
+// @here - preciso ver se está chamando o application.yml que não tem nada e por isso está com problema
 ### Roda o container aplicação
 `docker run -p 3080:8780 forum`
 
