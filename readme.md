@@ -40,7 +40,6 @@
 ### Constroi a imagem/ faça o build dela, gera o container
 `docker build -t forum -f Dockerfile .`
 
-// @here - preciso ver se está chamando o application.yml que não tem nada e por isso está com problema
 ### Roda o container aplicação
 `docker run -p 3080:8780 forum`
 
