@@ -15,7 +15,7 @@
 `docker run -d -p 3306:3306 --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_PASSWORD-root mysql:8.3.0`
 
 ### [Opcional] Caso o container já exista e esteja parado, você pode consultá-lo com o seguinte comando: `docker ps -a`. 
-### [Opcional] Para iniciar um container que está parado, utilize o comando:`docker start CONTAINER ID`
+### [Opcional] Para iniciar um container que está parado, utilize o comando: `docker start CONTAINER ID`
 ### [Opcional] Se preferir parar e remover um container para executar outro, use os comandos a seguir: `docker stop mysql-container` e `docker rm mysql-container`
 
 ### Para ver apenas os container que estão em execução
