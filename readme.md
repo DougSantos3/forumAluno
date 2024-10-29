@@ -40,6 +40,13 @@
 ### Constroi a imagem/ faça o build dela, gera o container
 `docker build -t forum -f Dockerfile .`
 
+### Após atualizar ou adicionar uma nova dependencia, faça um:
+`mvn clean install`
+### para garantir que o driver esteja disponível no classpath da sua aplicação
+
+### Pode executar pelo maven
+`mvn spring-boot:run -Dspring-boot.run.profiles=dev`
+
 ### Roda o container aplicação
 `docker run -p 3080:8780 forum`
 
