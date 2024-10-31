@@ -47,8 +47,33 @@
 ### Pode executar pelo maven
 `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 
-### Roda o container aplicação
-`docker run -p 3080:8780 forum`
+### Para executar pelo Docker
+
+### Este comando permite verificar as configurações de rede de um contêiner específico, incluindo seu IP.
+`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 1afa865e2d7a`
+
+### Crie uma Rede Docker Personalizada: Isso permite que os contêineres se comuniquem pelo nome.
+`docker network create minha-rede`
+
+### Listando as redes com docker network ls: Se você estiver usando uma rede customizada para o MySQL e o contêiner da aplicação, ambos estarão na mesma rede e você poderá acessar o banco pelo nome do contêiner (sem o IP).
+`docker network ls`
+
+### Confirme se o MySQL está em minha-rede: Se o contêiner do MySQL já está rodando, adicione-o à rede minha-rede com o comando:
+`docker network connect minha-rede <mysql_container_id>`
+
+
+### Ou, se ele ainda não estiver em execução, inicie o MySQL diretamente na rede minha-rede:
+`docker run --name mysql-container --network minha-rede -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=forum -p 3306:3306 -d mysql:8`
+
+### Inicie a aplicação Spring Boot na mesma rede: Use mysql-container como valor de DB_HOST:
+`docker run -p 8080:8080 --network minha-rede \
+  -e DB_HOST=mysql-container \
+  -e DB_PORT=3306 \
+  -e DB_USERNAME=root \
+  -e DB_PASSWORD=root \
+  forum`
+# Essa configuração permite que a aplicação se conecte ao MySQL, pois ambos estão na rede minha-rede.
+
 
 ### E podemos consultar
 `select * from topico;`
