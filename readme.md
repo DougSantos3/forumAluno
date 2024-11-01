@@ -72,13 +72,10 @@
   -e DB_USERNAME=root \
   -e DB_PASSWORD=root \
   forum`
-# Essa configuração permite que a aplicação se conecte ao MySQL, pois ambos estão na rede minha-rede.
+#### Essa configuração permite que a aplicação se conecte ao MySQL, pois ambos estão na rede minha-rede.
 
 
-### E podemos consultar
-`select * from topico;`
-
-# MVN commands
+### Agora que subiu a migration e tem as tabelas no banco
 
 ### Baixar dependencia pelo maven que preenchem o pom
 `mvn package spring-boot:repackage`
