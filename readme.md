@@ -4,8 +4,6 @@
 `Jdk: 17.0.13 Lts`
 
 
-# Docker commands
-
 ### Baixar imagem do Mysql
 `docker pull mysql:8.3.0`
 
@@ -33,21 +31,14 @@
 ### Feito isso, criamos o database. Pra conferirmos se está tudo certo, passamos o comando use forum.
 `use forum`
 
-
 ### Gere o .jar com o comando(ele ficara no path: /target/forum-0.0.1-SNAPSHOT.jar)
 `mvn clean package`
 
 ### Constroi a imagem/ faça o build dela, gera o container
 `docker build -t forum -f Dockerfile .`
 
-### Após atualizar ou adicionar uma nova dependencia, faça um:
+### Após atualizar ou adicionar uma nova dependência. Para garantir que o driver esteja disponível no classpath da sua aplicação
 `mvn clean install`
-### para garantir que o driver esteja disponível no classpath da sua aplicação
-
-### Pode executar pelo maven
-`mvn spring-boot:run -Dspring-boot.run.profiles=dev`
-
-### Para executar pelo Docker
 
 ### Este comando permite verificar as configurações de rede de um contêiner específico, incluindo seu IP.
 `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 1afa865e2d7a`
@@ -61,21 +52,23 @@
 ### Confirme se o MySQL está em minha-rede: Se o contêiner do MySQL já está rodando, adicione-o à rede minha-rede com o comando:
 `docker network connect minha-rede <mysql_container_id>`
 
-
 ### Ou, se ele ainda não estiver em execução, inicie o MySQL diretamente na rede minha-rede:
 `docker run --name mysql-container --network minha-rede -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=forum -p 3306:3306 -d mysql:8`
 
-### Inicie a aplicação Spring Boot na mesma rede: Use mysql-container como valor de DB_HOST:
+### Inicie a aplicação Spring Boot na mesma rede: Use mysql-container como valor de DB_HOST. Essa configuração permite que a aplicação se conecte ao MySQL, pois ambos estão na rede minha-rede.
 `docker run -p 8080:8080 --network minha-rede \
   -e DB_HOST=mysql-container \
   -e DB_PORT=3306 \
   -e DB_USERNAME=root \
   -e DB_PASSWORD=root \
   forum`
-#### Essa configuração permite que a aplicação se conecte ao MySQL, pois ambos estão na rede minha-rede.
 
+### Agora que subiu a migration você tem as tabelas no banco
 
-### Agora que subiu a migration e tem as tabelas no banco
+## Caso queira subir a aplicação pelo maven direto
+
+### Pode executar pelo maven
+`mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 
 ### Baixar dependencia pelo maven que preenchem o pom
 `mvn package spring-boot:repackage`
