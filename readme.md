@@ -7,9 +7,8 @@
 ### Baixar imagem do Mysql
 `docker pull mysql:8.3.0`
 
-<br>
 
-#### Criar e iniciar um container
+### Criar e iniciar um container
 `docker run -d -p 3306:3306 --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_PASSWORD-root mysql:8.3.0`
 
 ### [Opcional] Caso o container já exista e esteja parado, você pode consultá-lo com o seguinte comando: `docker ps -a`. 
@@ -28,7 +27,7 @@
 ### Agora podemos dar um create database forum para criar o banco de dados.
 `create database forum;`
 
-### Feito isso, criamos o database. Pra conferirmos se está tudo certo, passamos o comando use forum.
+### Feito isso, criamos o database. Para conferirmos se está tudo certo, passamos o comando use forum.
 `use forum`
 
 ### Gere o .jar com o comando(ele ficara no path: /target/forum-0.0.1-SNAPSHOT.jar)
@@ -65,12 +64,13 @@
 
 ### Agora que subiu a migration você tem as tabelas no banco
 
-## Caso queira subir a aplicação pelo maven direto
-
-### Pode executar pelo maven
+### Caso queira subir a aplicação pelo maven direto
 `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 
-### Baixar dependencia pelo maven que preenchem o pom
+
+## Outros comandos Maven
+
+### Baixar dependência pelo maven que preenchem o pom
 `mvn package spring-boot:repackage`
 
 ### Cria o jar da aplicação, sempre que mudar o código precisa gerar um novo jar.
@@ -124,14 +124,6 @@
 
 ### Executar o Redis
 `redis-cli  monitor`
-
-
-### Parar algum container
-`docker stop ${nome-do-contêiner}`
-
-### Inicia-lo
-`docker start ${nome-do-contêiner}`
-
 
 
 # Kubernetes
