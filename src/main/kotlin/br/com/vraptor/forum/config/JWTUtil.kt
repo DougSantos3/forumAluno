@@ -1,6 +1,6 @@
 package br.com.vraptor.forum.config
 
-import br.com.vraptor.forum.service.UsuarioService
+import br.com.vraptor.forum.unit.UsuarioService
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import org.springframework.beans.factory.annotation.Value

@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.service
+package br.com.vraptor.forum.unit
 
 import br.com.vraptor.forum.model.Curso
 import br.com.vraptor.forum.repository.CursoRepository
