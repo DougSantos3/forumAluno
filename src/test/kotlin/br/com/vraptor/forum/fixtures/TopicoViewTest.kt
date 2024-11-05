@@ -1,7 +1,6 @@
-package br.com.vraptor.forum.model
+package br.com.vraptor.forum.fixtures
 
 import br.com.vraptor.forum.dto.TopicoView
-import br.com.vraptor.forum.model.StatusTopico
 import java.time.LocalDate
 import java.time.LocalDateTime
 

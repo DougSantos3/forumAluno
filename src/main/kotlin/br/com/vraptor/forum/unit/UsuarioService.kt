@@ -1,7 +1,7 @@
 package br.com.vraptor.forum.unit
 
 import br.com.vraptor.forum.exception.NotFoundException
-import br.com.vraptor.forum.model.Usuario
+import br.com.vraptor.forum.fixtures.Usuario
 import br.com.vraptor.forum.repository.UsuarioRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

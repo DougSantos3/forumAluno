@@ -1,7 +1,7 @@
 package br.com.vraptor.forum.controller
 
 import br.com.vraptor.forum.config.JWTUtil
-import br.com.vraptor.forum.model.Role
+import br.com.vraptor.forum.fixtures.Role
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

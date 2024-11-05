@@ -1,7 +1,7 @@
 package br.com.vraptor.forum.mapper
 
 import br.com.vraptor.forum.dto.TopicoView
-import br.com.vraptor.forum.model.Topico
+import br.com.vraptor.forum.fixtures.Topico
 import org.springframework.stereotype.Component
 
 @Component

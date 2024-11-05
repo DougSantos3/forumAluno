@@ -1,7 +1,7 @@
 package br.com.vraptor.forum.unit
 
-import br.com.vraptor.forum.model.TopicoTest;
-import br.com.vraptor.forum.model.TopicoViewTest;
+import br.com.vraptor.forum.fixtures.TopicoTest;
+import br.com.vraptor.forum.fixtures.TopicoViewTest;
 import br.com.vraptor.forum.exception.NotFoundException;
 import br.com.vraptor.forum.mapper.TopicoFormMapper;
 import br.com.vraptor.forum.mapper.TopicoViewMapper;

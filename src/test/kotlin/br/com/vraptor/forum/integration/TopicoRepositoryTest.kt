@@ -1,6 +1,6 @@
 package br.com.vraptor.forum.integration
 
-import br.com.vraptor.forum.model.TopicoTest
+import br.com.vraptor.forum.fixtures.TopicoTest
 import br.com.vraptor.forum.dto.TopicoPorCategoriaDto
 import br.com.vraptor.forum.repository.TopicoRepository
 import net.bytebuddy.utility.dispatcher.JavaDispatcher.Container

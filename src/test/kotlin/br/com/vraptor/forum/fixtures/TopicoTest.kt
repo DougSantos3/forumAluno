@@ -1,6 +1,4 @@
-package br.com.vraptor.forum.model
-
-import br.com.vraptor.forum.model.Topico
+package br.com.vraptor.forum.fixtures
 
 object TopicoTest {
     fun build() = Topico(

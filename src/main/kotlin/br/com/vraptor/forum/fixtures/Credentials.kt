@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.model
+package br.com.vraptor.forum.fixtures
 
 data class Credentials(
     val username: String = "",

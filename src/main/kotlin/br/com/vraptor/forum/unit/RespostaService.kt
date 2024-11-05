@@ -1,10 +1,10 @@
 package br.com.vraptor.forum.unit
 
 //import br.com.vraptor.forum.mapper.RespostaFormMapper
-import br.com.vraptor.forum.model.Curso
-import br.com.vraptor.forum.model.Resposta
-import br.com.vraptor.forum.model.Topico
-import br.com.vraptor.forum.model.Usuario
+import br.com.vraptor.forum.fixtures.Curso
+import br.com.vraptor.forum.fixtures.Resposta
+import br.com.vraptor.forum.fixtures.Topico
+import br.com.vraptor.forum.fixtures.Usuario
 import org.springframework.stereotype.Service
 import java.util.*
 import java.util.stream.Collectors
