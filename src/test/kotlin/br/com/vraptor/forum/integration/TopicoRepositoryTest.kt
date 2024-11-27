@@ -11,6 +11,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.data.domain.PageRequest
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
+import org.testcontainers.containers.MySQLContainer
+import org.testcontainers.junit.jupiter.Testcontainers
+import org.assertj.core.api.Assertions.assertThat
 
 @DataJpaTest/*conseguimos ver, no momento em que executamos nossos testes, qual query SQL está sendo utilizada para realizar aquele teste de integração.*/
 @Testcontainers/* é uma anotação para o nosso teste que o JUnit 5 possui, habilitando, de fato, o teste de container.*/
@@ -28,7 +31,6 @@ class TopicoRepositoryTest {
     já possui um usuário root e tudo mais, e como é para teste aqui, não seria muito interessante usá-lo. Criamos, o trecho de código que vai
     criar uma instância do nosso container do MySQL, que vai criar, na verdade, o nosso container MySQL.*/
     companion object {
-        @Container
         private val mysqlContainer = MySQLContainer<Nothing>("mysql:8.3.0").apply {
             withDatabaseName("testedb")
             withUsername("joao")
@@ -42,25 +44,22 @@ class TopicoRepositoryTest {
             registry.add("spring.datasource.password", mysqlContainer::getPassword)
             registry.add("spring.datasource.username", mysqlContainer::getUsername)
         }
+    }
 
+    @Test
+    fun `deve gerar um relatorio`(){
+        topicoRepository.save(topico)
+        /*como é lateinit agora que será iniciado*/
+        val relatorio = topicoRepository.relatorio()
 
-        @Test
-        fun `deve gerar um relatorio`(){
-            topicoRepository.save(topico)
-            /*como é lateinit agora que será iniciado*/
-            val relatorio = topicoRepository.relatorio()
+        assertThat(relatorio).isNotNull
+        assertThat(relatorio.first()).isExactlyInstanceOf(TopicoPorCategoriaDto::class.java)
+    }
 
-            assertThat(relatorio).isNotNull
-            assertThat(relatorio.first()).isExactlyInstanceOf(TopicoPorCategoriaDto::class.java)
-        }
-
-        @Test
-        fun `deve listar topico pelo nome do curso`(){
-            topicoRepository.save(topico)
-            val topico = topicoRepository.findByCursoNome(topico.curso.nome, PageRequest.of(0, 5))
-            assertThat(topico).isNotNull
-        }
-
-
+    @Test
+    fun `deve listar topico pelo nome do curso`(){
+        topicoRepository.save(topico)
+        val topico = topicoRepository.findByCursoNome(topico.curso.nome, PageRequest.of(0, 5))
+        assertThat(topico).isNotNull
     }
 }
