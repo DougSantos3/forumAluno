@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TopicoControllerTest {
     private lateinit var webApplicationContext: WebApplicationContext
@@ -111,12 +112,14 @@ class TopicoControllerTest {
    Como retorno, a API sem autenticação está funcionando 100%. Ela retorna um 400, conforme esperado.*/
 
     @Test
-    fun 'deve retornar codigo 200 quando chamar topicos com token'() {
-        mockMvc.get(RECURSO) { this: ModHttpServletRequestDst
-            headers token
-
-                ?.let { this.setBearerAuth(it) } }
-        }.andExpect { status ( 1s2xxSuccessful() } }
+    fun `deve retornar codigo 200 quando chamar topicos com token`() {
+        mockMvc.get(RECURSO) {
+            headers {
+                this@TopicoControllerTest.token?.let { this.setBearerAuth(it) }
+            }
+        }.andExpect {
+            status { is2xxSuccessful() }
+        }
     }
 
     /*Agora vamos criar uma função chamada 'deve retornar codigo 200 quando chamar tópico por id com token'. Vamos
@@ -130,18 +133,14 @@ class TopicoControllerTest {
     que formamos no banco de dados, ele retorna 200 também. Desta forma, fizemos uma cobertura de testes bastante
     abrangente para a nossa API.*/
     @Test
-    fun 'deve retornar codigo 200 quando chamar tópico por id com token'() {
-        mockMvc.get(RECURSO_id.format("1")) {
+    fun `deve retornar codigo 200 quando chamar tópico por id com token`() {
+        mockMvc.get(RECURSO_ID.format("1")) {
             headers { token?.let { this.setBearerAuth(it) } }
-        }.andExpect { status ( 1s2xxSuccessful() } }
+        }.andExpect { status { is2xxSuccessful() } }
     }
-
 
     private fun gerarToken(): String? {
             val authorities = mutableListOf(Role(1, "LEITURA_ESCRITA"))
             return jwtUtil.generateToken("ana.email.com", authorities)
-        }
-
-
-
+    }
 }
