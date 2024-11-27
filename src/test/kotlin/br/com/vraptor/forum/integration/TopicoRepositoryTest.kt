@@ -3,7 +3,6 @@ package br.com.vraptor.forum.integration
 import br.com.vraptor.forum.fixtures.TopicoTest
 import br.com.vraptor.forum.dto.TopicoPorCategoriaDto
 import br.com.vraptor.forum.repository.TopicoRepository
-import net.bytebuddy.utility.dispatcher.JavaDispatcher.Container
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
