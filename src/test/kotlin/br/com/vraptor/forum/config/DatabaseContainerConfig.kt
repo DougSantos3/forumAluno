@@ -1,13 +1,13 @@
 package br.com.vraptor.forum.config
 
-import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.junit.jupiter.Container
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestConfiguration
 abstract class DatabaseContainerConfig {
     companion object {
         @Container
