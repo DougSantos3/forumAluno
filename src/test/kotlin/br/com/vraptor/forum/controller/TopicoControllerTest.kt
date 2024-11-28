@@ -1,5 +1,6 @@
 package br.com.vraptor.forum.controller
 
+import br.com.vraptor.forum.config.DatabaseContainerConfig
 import br.com.vraptor.forum.config.JWTUtil
 import br.com.vraptor.forum.fixtures.Role
 import org.junit.jupiter.api.BeforeEach
@@ -12,17 +13,20 @@ import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
+import org.testcontainers.junit.jupiter.Testcontainers
 
 
+@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class TopicoControllerTest {
+class TopicoControllerTest : DatabaseContainerConfig() {
 
     @Autowired
-    private lateinit var webApplicationContext: WebApplicationContext
+    private lateinit var webAppContext: WebApplicationContext
+
+    @Autowired
     private lateinit var jwtUtil: JWTUtil
 
     private lateinit var mockMvc: MockMvc
-
     private var token: String? = null
 
     /*Vamos fazer uma requisição para o recurso de tópicos, que é o "/topicos" na nossa aplicação, e realizaremos
@@ -38,8 +42,8 @@ class TopicoControllerTest {
     Pelos nossos padrões de segurança, "/topicos" é um recurso protegido. Ele precisa de um token válido para retornar
     as informações.*/
     companion object {
-        private const val RECURSO = "/topico"
-        private const val RECURSO_ID = RECURSO.plus("%s")
+        private const val RESOURCE = "/topico"
+        private const val RESOURCE_ID = RESOURCE.plus("%s")
     }
 
 
@@ -50,13 +54,20 @@ class TopicoControllerTest {
     requisições no mockMvc, passaremos recursos de autenticação para conseguirmos fazer uma requisição para o endpoint
     de tópicos.
 
+
+
     Primeiramente, chamaremos SecurityMockMvcConfigurers e faremos sua importação. Logo após sua chamada, vamos
     adicionar .springSecurity(), e após .apply<>(), colocaremos build().*/
+
+    private fun generateToken(): String? {
+        val authorities = mutableListOf(Role(1, "ROLE_WRITE"))
+        return jwtUtil.generateToken("ana.email.com", authorities)
+    }
+
     @BeforeEach
     fun setup() {
-        token = gerarToken()
-
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
+        token = generateToken()
+        mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext)
             .apply<DefaultMockMvcBuilder?>(
                 SecurityMockMvcConfigurers.springSecurity()
             ).build()
@@ -86,7 +97,9 @@ class TopicoControllerTest {
     400, que é o comportamento correto, o @Test deve ficar verde.*/
     @Test
     fun `deve retornar codigo 400 quando chamar topicos sem token`() {
-        mockMvc.get(RECURSO).andExpect { status { is4xxClientError() } }
+        mockMvc.get(RESOURCE).andExpect {
+            status { is4xxClientError() }
+        }
     }
 
     /*Quando fazemos a requisição para a nossa API, ela passa pelas camadas da aplicação até chegar no repositório.
@@ -112,11 +125,9 @@ class TopicoControllerTest {
    Como retorno, a API sem autenticação está funcionando 100%. Ela retorna um 400, conforme esperado.*/
 
     @Test
-    fun `deve retornar codigo 200 quando chamar topicos com token`() {
-        mockMvc.get(RECURSO) {
-            headers {
-                this@TopicoControllerTest.token?.let { this.setBearerAuth(it) }
-            }
+    fun `should return status code 200 when the valid token is provided`() {
+        mockMvc.get(RESOURCE) {
+            headers { token?.let { setBearerAuth(it) } }
         }.andExpect {
             status { is2xxSuccessful() }
         }
@@ -134,13 +145,8 @@ class TopicoControllerTest {
     abrangente para a nossa API.*/
     @Test
     fun `deve retornar codigo 200 quando chamar tópico por id com token`() {
-        mockMvc.get(RECURSO_ID.format("1")) {
-            headers { token?.let { this.setBearerAuth(it) } }
+        mockMvc.get(RESOURCE_ID.format("1")) {
+            headers { token?.let { setBearerAuth(it) } }
         }.andExpect { status { is2xxSuccessful() } }
-    }
-
-    private fun gerarToken(): String? {
-            val authorities = mutableListOf(Role(1, "LEITURA_ESCRITA"))
-            return jwtUtil.generateToken("ana.email.com", authorities)
     }
 }
