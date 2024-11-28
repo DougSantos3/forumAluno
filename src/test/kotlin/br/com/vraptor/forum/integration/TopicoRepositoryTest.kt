@@ -13,42 +13,17 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.testcontainers.junit.jupiter.Testcontainers
 
 
-//@DataJpaTest/*conseguimos ver, no momento em que executamos nossos testes, qual query SQL está sendo utilizada para realizar aquele teste de integração.*/
 @SpringBootTest
 @Testcontainers
-/* é uma anotação para o nosso teste que o JUnit 5 possui, habilitando, de fato, o teste de container.*/
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class TopicoRepositoryTest : DatabaseContainerConfig() {
 
-    /*Aqui, podemos utilizar o Autowired, que é uma anotação do Spring para a injeção de dependência, e vamos injetar o nosso repository.*/
     @Autowired
     private lateinit var repository: TopicoRepository
     private val topic = TopicoTest.build()
 
-    /*Em seguida, vamos criar um companion object, que é como se fosse o static do Java, para fazermos algumas configurações do nosso teste.
-    Uma recomendação de alguns artigos sobre o teste de containers é não passarmos aqui o usuário root, porque o MySQL
-    já possui um usuário root e tudo mais, e como é para teste aqui, não seria muito interessante usá-lo. Criamos, o trecho de código que vai
-    criar uma instância do nosso container do MySQL, que vai criar, na verdade, o nosso container MySQL.*/
-//    companion object {
-//        private val mysqlContainer = MySQLContainer<Nothing>("mysql:8.3.0").apply {
-//            withDatabaseName("testedb")
-//            withUsername("joao")
-//            withPassword("123456")
-//        }
-//
-//        @JvmStatic
-//        @DynamicPropertySource
-//        fun properties(registry: DynamicPropertyRegistry) {
-//            registry.add("spring.datasource.url", mysqlContainer::getJdbcUrl)
-//            registry.add("spring.datasource.password", mysqlContainer::getPassword)
-//            registry.add("spring.datasource.username", mysqlContainer::getUsername)
-//        }
-    //}
-
     @Test
     fun `deve gerar um relatorio`(){
         repository.save(topic)
-        /*como é lateinit agora que será iniciado*/
         val report = repository.relatorio()
 
         assertThat(report).isNotNull
