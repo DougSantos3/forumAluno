@@ -1,7 +1,7 @@
 ### Jdk:
 `OpenJDK Runtime Environment Zulu17.54+21-CA (build 17.0.13+11-LTS)`
 <br>
-`Jdk: 17.0.13 Lts`
+`zulu-21.38.21 Lts`
 
 
 ### Baixar imagem do Mysql
@@ -34,7 +34,7 @@
 `mvn clean package`
 
 ### Constroi a imagem/ faça o build dela, gera o container
-`docker build -t forum -f Dockerfile .`
+    `docker build -t forum -f Dockerfile .`
 
 ### Após atualizar ou adicionar uma nova dependência. Para garantir que o driver esteja disponível no classpath da sua aplicação
 `mvn clean install`
