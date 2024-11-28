@@ -8,12 +8,15 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.data.domain.PageRequest
-import org.testcontainers.junit.jupiter.Testcontainers
 import org.assertj.core.api.Assertions.assertThat
+import org.springframework.boot.test.context.SpringBootTest
+import org.testcontainers.junit.jupiter.Testcontainers
 
 
 //@DataJpaTest/*conseguimos ver, no momento em que executamos nossos testes, qual query SQL está sendo utilizada para realizar aquele teste de integração.*/
-@Testcontainers /* é uma anotação para o nosso teste que o JUnit 5 possui, habilitando, de fato, o teste de container.*/
+@SpringBootTest
+@Testcontainers
+/* é uma anotação para o nosso teste que o JUnit 5 possui, habilitando, de fato, o teste de container.*/
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class TopicoRepositoryTest : DatabaseContainerConfig() {
 
