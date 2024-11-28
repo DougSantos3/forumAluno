@@ -1,7 +1,7 @@
 package br.com.vraptor.forum.controller
 
 import br.com.vraptor.forum.dto.*
-import br.com.vraptor.forum.unit.TopicoService
+import br.com.vraptor.forum.services.TopicoService
 import jakarta.validation.Valid
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable

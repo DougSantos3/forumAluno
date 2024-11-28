@@ -3,6 +3,10 @@ package br.com.vraptor.forum.controller
 import br.com.vraptor.forum.config.DatabaseContainerConfig
 import br.com.vraptor.forum.config.JWTUtil
 import br.com.vraptor.forum.fixtures.Role
+import br.com.vraptor.forum.fixtures.TopicoTest
+import br.com.vraptor.forum.fixtures.Usuario
+import br.com.vraptor.forum.repository.TopicoRepository
+import br.com.vraptor.forum.repository.UsuarioRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,6 +30,12 @@ class TopicoControllerTest : DatabaseContainerConfig() {
     @Autowired
     private lateinit var jwtUtil: JWTUtil
 
+    @Autowired
+    private lateinit var repository: TopicoRepository
+
+    @Autowired
+    private lateinit var usuarioRepository: UsuarioRepository
+
     private lateinit var mockMvc: MockMvc
     private var token: String? = null
 
@@ -46,6 +56,15 @@ class TopicoControllerTest : DatabaseContainerConfig() {
             .apply<DefaultMockMvcBuilder?>(
                 SecurityMockMvcConfigurers.springSecurity()
             ).build()
+
+        val usuario = Usuario(
+            id = 1,  // ID fixo para o teste
+            nome = "Ana",
+            email = "ana.email.com",
+            password = "senha"
+        )
+        usuarioRepository.save(usuario)
+        repository.save(TopicoTest.build())
     }
 
     @Test
