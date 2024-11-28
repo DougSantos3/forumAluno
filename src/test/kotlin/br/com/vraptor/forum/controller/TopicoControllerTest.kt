@@ -16,9 +16,9 @@ import org.springframework.web.context.WebApplicationContext
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TopicoControllerTest {
-    private lateinit var webApplicationContext: WebApplicationContext
 
     @Autowired
+    private lateinit var webApplicationContext: WebApplicationContext
     private lateinit var jwtUtil: JWTUtil
 
     private lateinit var mockMvc: MockMvc
