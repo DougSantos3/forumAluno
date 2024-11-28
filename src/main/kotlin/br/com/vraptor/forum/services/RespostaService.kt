@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.unit
+package br.com.vraptor.forum.services
 
 //import br.com.vraptor.forum.mapper.RespostaFormMapper
 import br.com.vraptor.forum.fixtures.Curso
