@@ -11,9 +11,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import io.mockk.every
 import io.mockk.mockk
+import org.assertj.core.api.Assertions.assertThat
 import io.mockk.verify
 import java.util.Optional
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.assertThrows
 
 
@@ -21,7 +21,7 @@ class TopicoServiceTest {
 
     /* Para retornar page de topicos igual é do repository usa a implementação PageImpl, passar uma lista listOf que me
     retornam uma lista de topico, e usa o meu objeto de representação de tópico(TopicoTest.build) */
-    val topicos = PageImpl(listOf(TopicoTest.build()))
+    private val topicos = PageImpl(listOf(TopicoTest.build()))
 
     val paginacao: Pageable = mockk()
 
@@ -78,10 +78,10 @@ class TopicoServiceTest {
     fun `deve listar not found exception quando topicos nao for achado`() {
         every { topicoRepository.findById(any()) } returns Optional.empty()
 
-        val atual = assertThrows< NotFoundException> {
+        val exception = assertThrows< NotFoundException> {
             topicoService.buscarPorId(1)
         }
 
-        assertEquals("Topico nao encontrado!", atual.message)
+        assertThat(exception.message).isEqualTo("topic not found")
     }
 }
