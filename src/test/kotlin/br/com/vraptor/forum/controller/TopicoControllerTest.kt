@@ -2,9 +2,9 @@ package br.com.vraptor.forum.controller
 
 import br.com.vraptor.forum.config.DatabaseContainerConfig
 import br.com.vraptor.forum.config.JWTUtil
-import br.com.vraptor.forum.fixtures.Role
+import br.com.vraptor.forum.entity.Role
 import br.com.vraptor.forum.fixtures.TopicoTest
-import br.com.vraptor.forum.fixtures.Usuario
+import br.com.vraptor.forum.entity.Usuario
 import br.com.vraptor.forum.repository.TopicoRepository
 import br.com.vraptor.forum.repository.UsuarioRepository
 import org.junit.jupiter.api.BeforeEach

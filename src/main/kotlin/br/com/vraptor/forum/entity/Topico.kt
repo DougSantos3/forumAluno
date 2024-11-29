@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.fixtures
+package br.com.vraptor.forum.entity
 
 import jakarta.persistence.*
 import java.time.LocalDate

@@ -1,7 +1,7 @@
 package br.com.vraptor.forum.security
 
 import br.com.vraptor.forum.config.JWTUtil
-import br.com.vraptor.forum.fixtures.Credentials
+import br.com.vraptor.forum.entity.Credentials
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest

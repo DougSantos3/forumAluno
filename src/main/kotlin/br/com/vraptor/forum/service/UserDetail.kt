@@ -1,6 +1,6 @@
 package br.com.vraptor.forum.service
 
-import br.com.vraptor.forum.fixtures.Usuario
+import br.com.vraptor.forum.entity.Usuario
 import org.springframework.security.core.userdetails.UserDetails
 
 class UserDetail(

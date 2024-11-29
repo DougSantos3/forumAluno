@@ -1,5 +1,7 @@
 package br.com.vraptor.forum.fixtures
 
+import br.com.vraptor.forum.entity.Topico
+
 object TopicoTest {
     fun build() = Topico(
         id = 1,

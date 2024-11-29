@@ -1,6 +1,6 @@
 package br.com.vraptor.forum.service
 
-import br.com.vraptor.forum.fixtures.Curso
+import br.com.vraptor.forum.entity.Curso
 import br.com.vraptor.forum.repository.CursoRepository
 import org.springframework.stereotype.Service
 
