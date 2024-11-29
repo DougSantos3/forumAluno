@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.services
+package br.com.vraptor.forum.service
 
 import br.com.vraptor.forum.fixtures.Usuario
 import org.springframework.security.core.userdetails.UserDetails

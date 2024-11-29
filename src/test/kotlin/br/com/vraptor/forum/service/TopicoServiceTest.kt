@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.unit
+package br.com.vraptor.forum.service
 
 import br.com.vraptor.forum.fixtures.TopicoTest;
 import br.com.vraptor.forum.fixtures.TopicoViewTest;
@@ -6,7 +6,6 @@ import br.com.vraptor.forum.exception.NotFoundException;
 import br.com.vraptor.forum.mapper.TopicoFormMapper;
 import br.com.vraptor.forum.mapper.TopicoViewMapper;
 import br.com.vraptor.forum.repository.TopicoRepository;
-import br.com.vraptor.forum.services.TopicoService
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

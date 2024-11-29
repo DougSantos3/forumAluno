@@ -1,11 +1,10 @@
-package br.com.vraptor.forum.services
+package br.com.vraptor.forum.service
 
 import br.com.vraptor.forum.dto.*
 import br.com.vraptor.forum.exception.NotFoundException
 import br.com.vraptor.forum.mapper.TopicoFormMapper
 import br.com.vraptor.forum.mapper.TopicoViewMapper
 import br.com.vraptor.forum.repository.TopicoRepository
-import jakarta.persistence.EntityManager
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service

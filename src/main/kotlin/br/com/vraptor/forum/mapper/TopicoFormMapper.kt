@@ -2,8 +2,8 @@ package br.com.vraptor.forum.mapper
 
 import br.com.vraptor.forum.dto.NovoTopicoForm
 import br.com.vraptor.forum.fixtures.Topico
-import br.com.vraptor.forum.services.CursoService
-import br.com.vraptor.forum.services.UsuarioService
+import br.com.vraptor.forum.service.CursoService
+import br.com.vraptor.forum.service.UsuarioService
 import org.springframework.stereotype.Component
 
 @Component
