@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${TESTCONTAINERS_DATASOURCE_URL}/testdb?allowPublicKeyRetrieval=true&useSSL=false
+    username: ${TESTCONTAINERS_DATASOURCE_USERNAME}
+    password: ${TESTCONTAINERS_DATASOURCE_PASSWORD}
+  flyway:
+    enabled: false
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  logging:
+    level:
+      org.testcontainers: DEBUG
+      org.springframework: DEBUG

@@ -58,7 +58,7 @@ class TopicoControllerTest : DatabaseContainerConfig() {
             ).build()
 
         val usuario = Usuario(
-            id = 1,  // ID fixo para o teste
+            id = 1,
             nome = "Ana",
             email = "ana.email.com",
             password = "senha"

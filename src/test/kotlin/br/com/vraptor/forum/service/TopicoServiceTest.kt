@@ -60,7 +60,7 @@ class TopicoServiceTest {
     fun `deve listar not found exception quando topicos nao for achado`() {
         every { topicoRepository.findById(any()) } returns Optional.empty()
 
-        val exception = assertThrows< NotFoundException> {
+        val exception = assertThrows<NotFoundException> {
             topicoService.buscarPorId(1)
         }
 
