@@ -68,7 +68,7 @@ class TopicoControllerTest : DatabaseContainerConfig() {
     }
 
     @Test
-    fun `deve retornar codigo 400 quando chamar topicos sem token`() {
+    fun `should return statuso 400 when topics without token`() {
         mockMvc.get(RESOURCE).andExpect {
             status { is4xxClientError() }
         }
@@ -84,9 +84,10 @@ class TopicoControllerTest : DatabaseContainerConfig() {
     }
 
     @Test
-    fun `deve retornar codigo 200 quando chamar tópico por id com token`() {
+    fun `should return status 200 when call topics by day with token`() {
         mockMvc.get(RESOURCE_ID.format("1")) {
             headers { token?.let { setBearerAuth(it) } }
-        }.andExpect { status { is2xxSuccessful() } }
+        }.andExpect {
+            status { is2xxSuccessful() } }
     }
 }
