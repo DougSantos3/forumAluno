@@ -1,7 +1,5 @@
 ### Jdk:
-`OpenJDK Runtime Environment Zulu17.54+21-CA (build 17.0.13+11-LTS)`
-<br>
-`zulu-21.38.21 Lts`
+`OpenJDK Runtime Environment Zulu21.38+21-CA (build 21.0.5+11-LTS)`
 
 
 ### Baixar imagem do Mysql
@@ -11,9 +9,11 @@
 ### Criar e iniciar um container
 `docker run -d -p 3306:3306 --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_PASSWORD-root mysql:8.3.0`
 
+`docker run -p 8081:8081 -e DB_HOST=localhost -e DB_PORT=3306 -e DB_USERNAME=root -e DB_PASSWORD=root forum-app`
+
 ### [Opcional] Caso o container já exista e esteja parado, você pode consultá-lo com o seguinte comando: `docker ps -a`. 
 ### [Opcional] Para iniciar um container que está parado, utilize o comando: `docker start CONTAINER ID`
-### [Opcional] Se preferir parar e remover um container para executar outro, use os comandos a seguir: `docker stop mysql-container` e `docker rm mysql-container`
+### [Opcional] Se preferir parar e remover um container para executar outro, use os comandos a seguir: `docker stop CONTAINER ID` e `docker rm CONTAINER ID`
 
 ### Para ver apenas os container que estão em execução
 `docker ps`
@@ -31,16 +31,21 @@
 `use forum`
 
 ### Gere o .jar com o comando(ele ficara no path: /target/forum-0.0.1-SNAPSHOT.jar)
+## sem rodar os testes unitarios/integração container/integração controller
+`mvn clean package -DskipTests`
+
+### Rodando os testes juntos
 `mvn clean package`
 
 ### Constroi a imagem/ faça o build dela, gera o container
-    `docker build -t forum -f Dockerfile .`
+`docker build -t forum -f Dockerfile .`
 
 ### Após atualizar ou adicionar uma nova dependência. Para garantir que o driver esteja disponível no classpath da sua aplicação
+## Execução com os testes
 `mvn clean install`
 
-### Este comando permite verificar as configurações de rede de um contêiner específico, incluindo seu IP.
-`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 1afa865e2d7a`
+## Sem os testes
+`mvn clean install -DskipTests`
 
 ### Crie uma Rede Docker Personalizada: Isso permite que os contêineres se comuniquem pelo nome.
 `docker network create minha-rede`
@@ -52,10 +57,10 @@
 `docker network connect minha-rede <mysql_container_id>`
 
 ### Ou, se ele ainda não estiver em execução, inicie o MySQL diretamente na rede minha-rede:
-`docker run --name mysql-container --network minha-rede -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=forum -p 3306:3306 -d mysql:8`
+`docker run --name mysql-container --network minha-rede2 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=forum -p 3306:3306 -d mysql:8`
 
 ### Inicie a aplicação Spring Boot na mesma rede: Use mysql-container como valor de DB_HOST. Essa configuração permite que a aplicação se conecte ao MySQL, pois ambos estão na rede minha-rede.
-`docker run -p 8080:8080 --network minha-rede \
+`docker run -p 8081:8081 --network minha-rede2 \
   -e DB_HOST=mysql-container \
   -e DB_PORT=3306 \
   -e DB_USERNAME=root \
@@ -78,6 +83,9 @@
 
 ### Pegar as informações novas após ter modificado o código
 `mvn clean package`
+
+### Se você quizer consultar se a porta já está sendo usada
+`sudo lsof -i :8080`
 
 ### Subir a aplicação usando o comando mvn, sem definir um perfil específico.
 `mvn spring-boot:run`
