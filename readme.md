@@ -85,7 +85,7 @@
 `mvn clean package`
 
 ### Se você quizer consultar se a porta já está sendo usada
-`sudo lsof -i :8080`
+`sudo lsof -i :porta`
 
 ### Subir a aplicação usando o comando mvn, sem definir um perfil específico.
 `mvn spring-boot:run`
@@ -95,6 +95,11 @@
 
 ### Rodar em Prod
 `mvn spring-boot:run -Dspring-boot.run.profiles=prod`
+
+### Docker compose
+`docker-compose down` ## Para parar e remover os containers existentes. 
+`docker-compose down -v` ## para remover também os volumes.
+`docker-compose up -d`
 
 
 ### Heroku commands
