@@ -1,7 +1,11 @@
-package br.com.vraptor.forum.controller
+package br.com.vraptor.forum.adapter.controller
 
+import br.com.vraptor.forum.adapter.dto.AtualizacaoTopicoForm
+import br.com.vraptor.forum.adapter.dto.NovoTopicoForm
+import br.com.vraptor.forum.adapter.dto.TopicoPorCategoriaDto
+import br.com.vraptor.forum.adapter.dto.TopicoView
 import br.com.vraptor.forum.dto.*
-import br.com.vraptor.forum.service.TopicoService
+import br.com.vraptor.forum.usecases.service.TopicoService
 import jakarta.validation.Valid
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable

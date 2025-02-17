@@ -9,6 +9,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+  server:
+    port: 8081
   logging:
     level:
       org.testcontainers: DEBUG

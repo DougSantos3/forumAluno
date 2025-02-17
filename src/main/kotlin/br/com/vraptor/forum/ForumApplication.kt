@@ -1,3 +1,4 @@
+
 package br.com.vraptor.forum
 
 import org.springframework.boot.autoconfigure.SpringBootApplication

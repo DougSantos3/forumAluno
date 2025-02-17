@@ -5,9 +5,15 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
   jpa:
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
         format_sql: true
+  flyway:
+    enabled: true
+  server:
+    port: 8081
 jwt:
   secret: secret

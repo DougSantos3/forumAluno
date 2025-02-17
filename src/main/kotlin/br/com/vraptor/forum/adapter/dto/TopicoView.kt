@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.dto
+package br.com.vraptor.forum.adapter.dto
 
 import br.com.vraptor.forum.entity.StatusTopico
 import java.time.LocalDate

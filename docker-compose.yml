@@ -1,0 +1,28 @@
+services:
+  forumaluno:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev  # No hyphen
+      DB_HOST: mysql-container    # No hyphen
+      DB_PORT: "3306"           # Quotes for clarity, although numbers are usually fine without
+      DB_USERNAME: root         # No hyphen
+      DB_PASSWORD: root         # No hyphen
+    depends_on:
+      - mysql-container
+    networks:
+      - forum-network # Add a network
+
+  mysql-container:  # Add the MySQL service definition
+    image: mysql:8 # Use the appropriate MySQL image version
+    ports:
+      - "3306:3306" # Optional: Expose the port for external access
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # No hyphen
+      MYSQL_DATABASE: forum      # No hyphen
+    networks:
+      - forum-network
+
+networks:
+  forum-network: # Network definition

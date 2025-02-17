@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.service
+package br.com.vraptor.forum.usecases.service
 
 import br.com.vraptor.forum.exception.NotFoundException
 import br.com.vraptor.forum.entity.Usuario

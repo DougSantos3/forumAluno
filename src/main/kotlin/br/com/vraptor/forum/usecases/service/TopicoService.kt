@@ -1,5 +1,9 @@
-package br.com.vraptor.forum.service
+package br.com.vraptor.forum.usecases.service
 
+import br.com.vraptor.forum.adapter.dto.AtualizacaoTopicoForm
+import br.com.vraptor.forum.adapter.dto.NovoTopicoForm
+import br.com.vraptor.forum.adapter.dto.TopicoPorCategoriaDto
+import br.com.vraptor.forum.adapter.dto.TopicoView
 import br.com.vraptor.forum.dto.*
 import br.com.vraptor.forum.exception.NotFoundException
 import br.com.vraptor.forum.mapper.TopicoFormMapper

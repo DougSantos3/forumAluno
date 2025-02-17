@@ -1,6 +1,6 @@
 package br.com.vraptor.forum.repository
 
-import br.com.vraptor.forum.dto.TopicoPorCategoriaDto
+import br.com.vraptor.forum.adapter.dto.TopicoPorCategoriaDto
 import br.com.vraptor.forum.entity.Topico
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

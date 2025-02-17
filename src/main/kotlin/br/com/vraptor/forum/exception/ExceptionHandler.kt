@@ -1,6 +1,6 @@
 package br.com.vraptor.forum.exception
 
-import br.com.vraptor.forum.dto.ErrorView
+import br.com.vraptor.forum.adapter.dto.ErrorView
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException

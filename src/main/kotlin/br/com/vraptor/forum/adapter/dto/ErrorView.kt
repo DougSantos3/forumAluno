@@ -1,4 +1,4 @@
-package br.com.vraptor.forum.dto
+package br.com.vraptor.forum.adapter.dto
 
 import java.time.LocalDateTime
 
